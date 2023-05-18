@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { BodyAirHumidity, SerieAirHumidity } from '@/models/air-humidity';
-import serviceAirHumidity from '@/services/menu.service';
+import serviceAirHumidity from '@/services/air-humidity.service';
 import { Card, Typography } from '@mui/material';
 
 import FilterAirHumidity from './filter-air-humidity';
@@ -32,7 +32,6 @@ export default function AirHumidity() {
   async function requestAirHumidity() {
     if (date && !isNaN(date.getTime())) {
       responseAirHumidity = await serviceAirHumidity(date, period, interval)
-      console.log(responseAirHumidity);
 
       if (responseAirHumidity.data?.serie.length > 0) {
         setMinMaxHumidity({
